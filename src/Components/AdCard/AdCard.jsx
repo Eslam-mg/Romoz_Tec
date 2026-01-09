@@ -23,7 +23,7 @@ export default function AdCard({ category, adID, img, title, sellerName, userID,
     const addToFavorites = async (category, adId) => {
         try {
             setIsLoading(true);
-            const response = await fetch(`https://api.maaashi.com/api/favorites/${category}/${adId}`,
+            const response = await fetch(`https://mashi.coderaeg.com/api/favorites/${category}/${adId}`,
                 {
                     method: "post",
                     headers: {
@@ -58,7 +58,7 @@ export default function AdCard({ category, adID, img, title, sellerName, userID,
     return (
         <div className="ad_card" onClick={() => navigate(`/${category}/${adID}`)}>
             <div className="card_image">
-                <img src={`https://api.maaashi.com/storage/${img}`} alt={title} />
+                <img src={`https://mashi.coderaeg.com/storage/${img}`} alt={title} />
             </div>
 
             {showUserImg &&
