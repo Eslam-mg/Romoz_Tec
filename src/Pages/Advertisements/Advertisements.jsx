@@ -196,7 +196,7 @@ export default function Advertisements() {
                     formData.append("information[anecdotes][anecdoteType]", formik.values.information.anecdotes.moreInfo);
                 }
 
-                const response = await axios.post(`https://api.maaashi.com/api/ealans`,
+                const response = await axios.post(`https://mashi.coderaeg.com/api/ealans`,
                     formData,
                     {
                         headers: {

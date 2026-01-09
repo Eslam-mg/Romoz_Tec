@@ -49,7 +49,7 @@ export default function Register() {
         setErrorMessage("");
         // url from vite.config
         const baseUrl = import.meta.env.VITE_API_URL;
-        const response = await fetch(`https://api.maaashi.com/api/register`,
+        const response = await fetch(`https://mashi.coderaeg.com/api/register`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

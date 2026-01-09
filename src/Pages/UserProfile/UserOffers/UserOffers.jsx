@@ -17,7 +17,7 @@ export default function UserOffers() {
     const deleteAdById = async (category, adId) => {
         try {
             setDeleting(true);
-            const response = await fetch(`https://api.maaashi.com/api/profile/ealans/${category}/${adId}`, {
+            const response = await fetch(`https://mashi.coderaeg.com/api/profile/ealans/${category}/${adId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ export default function UserOffers() {
                         <div key={`${ad.category}_${ad.id_ads}`} className="advertisements_card">
                             <div className="card_image">
                                 <img
-                                    src={`https://api.maaashi.com/storage/${ad.images[0]}`}
+                                    src={`https://mashi.coderaeg.com/storage/${ad.images[0]}`}
                                     alt={ad.user.user_name}
                                     className="ad_image"
                                 />

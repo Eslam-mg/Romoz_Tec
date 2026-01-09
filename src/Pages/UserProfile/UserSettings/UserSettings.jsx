@@ -158,7 +158,7 @@ export default function UserSettings() {
                                                     handleImageUpload(
                                                         e,
                                                         "cover_image",
-                                                        `https://api.maaashi.com/api/cover-image`
+                                                        `https://mashi.coderaeg.com/api/cover-image`
                                                     )
                                                 }
                                                 disabled={imageLoading}
@@ -199,7 +199,7 @@ export default function UserSettings() {
                                                     handleImageUpload(
                                                         e,
                                                         "profile_image",
-                                                        `https://api.maaashi.com/api/profile-image`
+                                                        `https://mashi.coderaeg.com/api/profile-image`
                                                     )
                                                 }
                                                 disabled={imageLoading}

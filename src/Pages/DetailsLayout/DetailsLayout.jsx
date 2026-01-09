@@ -22,7 +22,7 @@ const DetailsLayout = () => {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          `https://api.maaashi.com/api/ealans/${details}/${id}`
+          `https://mashi.coderaeg.com/api/ealans/${details}/${id}`
         );
         if (response?.data?.success) {
           const data = response?.data?.data;
@@ -30,7 +30,7 @@ const DetailsLayout = () => {
           setIsLoading(false);
 
           if (data?.images?.length > 0) {
-            setMainImage(`https://api.maaashi.com/storage/${data.images[0]}`);
+            setMainImage(`https://mashi.coderaeg.com/storage/${data.images[0]}`);
           }
         }
       } catch (error) {
@@ -123,7 +123,7 @@ const DetailsLayout = () => {
             <div className="details-lay-image-thumbs">
               {images.length > 0 &&
                 images.map((img, index) => {
-                  const fullImg = `https://api.maaashi.com/storage/${img}`;
+                  const fullImg = `https://mashi.coderaeg.com/storage/${img}`;
                   return (
                     <img
                       key={index}

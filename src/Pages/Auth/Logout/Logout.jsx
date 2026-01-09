@@ -12,7 +12,7 @@ export default function Logout({ setShowConfirm }) {
     const handleLogout = async () => {
         try {
             setLogoutIsLoading(true);
-            const response = await fetch(`https://api.maaashi.com/api/logout`,
+            const response = await fetch(`https://mashi.coderaeg.com/api/logout`,
                 {
                     method: "POST",
                     headers: {

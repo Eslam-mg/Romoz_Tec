@@ -65,7 +65,7 @@ export default function SpecificCategory() {
             setIsLoading(true);
             setErrorMessage(false);
             try {
-                const response = await fetch(`https://api.maaashi.com/api/ealans?category=${category}&per_page=20`);
+                const response = await fetch(`https://mashi.coderaeg.com/api/ealans?category=${category}&per_page=20`);
                 const data = await response.json();
                 if (data.success) {
                     setCategoryData(data.data.data.ads);

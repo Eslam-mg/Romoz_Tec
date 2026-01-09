@@ -17,7 +17,7 @@ export default function DeleteAcount() {
         setIsLoading(true);
         try {
             const baseUrl = import.meta.env.VITE_API_URL;
-            const response = await fetch(`https://api.maaashi.com/api/profile/delete`, {
+            const response = await fetch(`https://mashi.coderaeg.com/api/profile/delete`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
