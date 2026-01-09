@@ -63,7 +63,7 @@ const DetailsLayout = () => {
         <div className="details_links">
           <Link to="/" className="details-close">الرئيسيه</Link>
           <img src="/Icons/chevron-left.svg" alt="chevron-left" />
-          <Link to={`/${category.key}`} className="details-close">{category.name}</Link>
+          <Link to={`/category/${category.key}`} className="details-close">{category.name}</Link>
           <img src="/Icons/chevron-left.svg" alt="chevron-left" />
           <span className="details-close">{ad_details?.information?.title}</span>
         </div>
