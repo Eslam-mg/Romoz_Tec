@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import AddHeader from '../../Components/AdvertisementsComponents/AddHeader/AddHeader';
 import Category from './Category/Category';
 import './style.css'
@@ -14,13 +14,14 @@ import { useCookies } from "react-cookie";
 import LoginRequiredCard from '../../Components/AdvertisementsComponents/LoginRequiredCard/LoginRequiredCard';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastWarning } from '../../Components/Navbar/Navbar';
+import { contextData } from '../../Context/Context';
 
 export default function Advertisements() {
     // Step management: 1=category, 2=details, 3=review
+    const { userData } = useContext(contextData);
     const [cookies, setCookie, removeCookie] = useCookies(["token"]);
     const navigate = useNavigate();
     const token = cookies?.token?.data?.token;
-    const userData = cookies?.token?.data?.user;
     const [showToast, setShowToast] = useState(true);
     const [ads_id, setAds_id] = useState('');
     const [categoryName, setCategoryName] = useState('');
