@@ -3,6 +3,7 @@
 # 🛍️ Maaashi | Classified Ads Platform
 
 **Maaashi** is a web application inspired by the Saudi platform _Haraj_, where users can post and browse advertisements for products or services in an easy and organized way.
+# [live demo](https://masihe-web-e2m.vercel.app/).
 <div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
   <img src="./public/preview/maaashi.webp" style="width: 100%;"/>
 </div>
