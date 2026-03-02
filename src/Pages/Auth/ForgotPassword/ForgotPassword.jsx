@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import "./forgotPasswordStyle.css";
+import { EmailIcon } from '../../../Components/UI/Icons/Icons';
 
 export default function ForgotPassword() {
   return (
@@ -33,9 +34,7 @@ export default function ForgotPassword() {
                 className='input'
                 placeholder='أدخل بريدك الإلكتروني'
               />
-              <div className="email_icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x={2} y={4} width={20} height={16} rx={2} /></svg>
-              </div>
+              <EmailIcon width={22} height={22} className='input_icon'/>
             </div>
           </div>
 
@@ -44,29 +43,6 @@ export default function ForgotPassword() {
           </button>
         </form>
       </div>
-      {/* <div className="forgotPassword-container">
-        <h2>تحقق من الكود</h2>
-        <div className="verify-box">
-          <img src="/Icons/Auth/email.svg" alt="email" className="verify-icon" />
-          <p>
-            أدخل رمز التحقق المرسل إلى: <b>a*****@gmail.com</b>
-          </p>
-        </div>
-        <form className="login-form">
-          <div className="otp-inputs"></div>
-          <button type="submit" className="login_button">
-            تأكيد الرمز
-          </button>
-        </form>
-        <div className="login-footer">
-          <p>
-            إعادة الإرسال خلال <span>00:60</span>
-          </p>
-          <Link to="/resetPassword">أعد إرسال الرمز</Link>
-          <br />
-          <a href="/contact">تواجه مشكلة؟ تواصل معنا</a>
-        </div>
-      </div> */}
     </div>
   )
 }
