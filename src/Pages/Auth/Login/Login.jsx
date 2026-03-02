@@ -11,7 +11,7 @@ export default function Login() {
     <main className="page-center">
       <div className="auth-box login_box">
         <div className="login-image">
-          <img src="/images/login.webp" alt="تسجيل الدخول" loading="lazy" />
+          <img src="/images/login.webp" alt="login تسجيل الدخول" loading="lazy" />
         </div>
         <div className="login-container">
           <h1 className="login-title">مرحبًا بك مجددًا</h1>
