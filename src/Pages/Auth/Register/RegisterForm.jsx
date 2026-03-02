@@ -195,7 +195,7 @@ export default function RegisterForm() {
                             />
                             <button
                                 type="button"
-                                className="eye_Icon"
+                                className="input_icon"
                                 onClick={() => setShowPassword(!showPassword)}
                                 aria-label={showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"}
                             >
