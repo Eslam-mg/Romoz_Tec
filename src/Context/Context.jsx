@@ -1,75 +1,72 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { fetchUser } from '../services/userService';
+import { fetchUserAds as fetchUserAdsService } from '../services/adsService';
+import { fetchFavorites } from '../services/favoritesService';
 
 export const contextData = createContext();
 
 export default function StoreContextProvider({ children }) {
-    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+    const [cookies] = useCookies(["token"]);
     const userID = cookies?.token?.data?.user?.id;
     const token = cookies?.token?.data?.token;
+
+    // بيانات المستخدم
     const [userData, setUserData] = useState({});
     const fetchUserData = async () => {
+        if (!userID || !token) return;
         try {
-            // url from vite.config
-            const response = await fetch(`https://mashi.coderaeg.com/api/user/${userID}`, {
-                method: "GET",
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
+            const data = await fetchUser(userID, token);
             setUserData(data.data);
         } catch (err) {
-            console.log(err.message);
+            console.error("fetchUserData error:", err.message);
         }
     };
 
-    // fetch user Advertisements 
+    // إعلانات المستخدم
     const [userAdvertisements, setUserAdvertisements] = useState([]);
-    const [adsIsLoading, setadsIsLoading] = useState(false);
+    const [adsIsLoading, setAdsIsLoading] = useState(false);
     const fetchUserAds = async () => {
+        if (!token) return;
+        setAdsIsLoading(true);
         try {
-            setadsIsLoading(true);
-
-            const response = await fetch(`https://mashi.coderaeg.com/api/profile/ealans`,
-                {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-
-            const dataAds = await response.json();
-            setUserAdvertisements(dataAds.data?.data || []);
+            const data = await fetchUserAdsService(token);
+            setUserAdvertisements(data?.data?.data || []);
         } catch {
-            setError("فشل الاتصال بالسيرفر.");
+            setUserAdvertisements([]);
         } finally {
-            setadsIsLoading(false);
+            setAdsIsLoading(false);
         }
     };
 
-    // handle favorite toggle
+    // المفضلة
     const [showFavoriteToast, setShowFavoriteToast] = useState(false);
     const [favorites, setFavorites] = useState({});
     const fetchUserFavorites = async () => {
+        if (!token) return;
         try {
-            const res = await fetch(`https://mashi.coderaeg.com/api/favorites`, {
-                method: "GET",
-                headers: { Authorization: `Bearer ${token}` },
-            });
-
-            const data = await res.json();
+            const data = await fetchFavorites(token);
             setFavorites(data?.data || {});
         } catch (err) {
-            console.error(err);
+            console.error("fetchUserFavorites error:", err.message);
         }
     };
+
     return (
-        <contextData.Provider value={{ userID, token, fetchUserData, userData, fetchUserFavorites, favorites, fetchUserAds, userAdvertisements, adsIsLoading, showFavoriteToast, setShowFavoriteToast }}>
+        <contextData.Provider value={{
+            userID,
+            token,
+            fetchUserData,
+            userData,
+            fetchUserFavorites,
+            favorites,
+            fetchUserAds,
+            userAdvertisements,
+            adsIsLoading,
+            showFavoriteToast,
+            setShowFavoriteToast,
+        }}>
             {children}
         </contextData.Provider>
-    )
-};
+    );
+}
