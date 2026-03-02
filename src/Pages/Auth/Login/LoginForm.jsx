@@ -74,9 +74,7 @@ export default function LoginForm() {
                         onBlur={formik.handleBlur}
                         aria-describedby={formik.touched.email && formik.errors.email ? "email-error" : undefined}
                     />
-                    <div className="input_icon">
-                        <EmailIcon width={24} height={24}/>
-                    </div>
+                    <EmailIcon width={24} height={24} className="input_icon" />
                 </div>
             </div>
 
