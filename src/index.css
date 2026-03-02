@@ -162,13 +162,13 @@ textarea::placeholder {
     justify-content: center;
     position: absolute;
     top: 50%;
+    right: 0px;
     transform: translateY(-50%);
     /* global button styles */
     background: transparent;
     padding: 0;
-    padding-right: 6px;
-    border-radius: 0;
-    color: inherit;
+    padding-inline-start: 6px;
+    color: #2C3E50;
     width: 40px;
     height: 100%;
 }
@@ -180,6 +180,23 @@ textarea::placeholder {
 .input_icon img {
     width: 24px;
     height: 24px;
+}
+
+.eye_Icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* global button styles */
+    background: transparent;
+    padding: 0;
+    padding-right: 6px;
+    border-radius: 0;
+    color: #2C3E50;
+    width: 40px;
+    height: 100%;
 }
 
 label {
