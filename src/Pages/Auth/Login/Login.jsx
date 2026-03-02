@@ -9,6 +9,7 @@ export default function Login() {
 
   return (
     <main className="page-center">
+      <div className="top_line" />
       <div className="auth-box login_box">
         <div className="login-image">
           <img src="/images/login.webp" alt="login تسجيل الدخول" loading="lazy" />
