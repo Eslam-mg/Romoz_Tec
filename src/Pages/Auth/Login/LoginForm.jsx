@@ -75,7 +75,7 @@ export default function LoginForm() {
                         aria-describedby={formik.touched.email && formik.errors.email ? "email-error" : undefined}
                     />
                     <div className="input_icon">
-                        <EmailIcon/>
+                        <EmailIcon width={24} height={24}/>
                     </div>
                 </div>
             </div>
