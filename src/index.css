@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Outfit:wght@100..900&display=swap");
 
+/* ============================================================
+   CSS VARIABLES
+   ============================================================ */
 :root {
     /* Colors */
     --color: #fff;
@@ -22,10 +25,10 @@
     --font-size-md: 16px;
     --font-size-lg: 20px;
     --font-size-xl: 28px;
-    /* Borders & Shadows */
+
+    /* Spacing & Radius */
     --space-sm: 8px;
     --space-md: 12px;
-
     --radius-sm: 6px;
     --radius-md: 12px;
     --radius-lg: 20px;
@@ -33,26 +36,27 @@
     --shadow-md: 0 4px 12px var(--shadow-color);
 }
 
-/* Reset */
+/* ============================================================
+   RESET
+   ============================================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     direction: rtl;
     font-family: var(--font-main);
-    direction: rtl;
 }
 
-/* Body */
 body {
-    font-family: var(--font-main);
     font-size: var(--font-size-md);
     background-color: var(--landing-color);
     color: var(--title-color);
     line-height: 1.6;
 }
 
-/* Buttons */
+/* ============================================================
+   BASE ELEMENTS
+   ============================================================ */
 button {
     font-family: inherit;
     cursor: pointer;
@@ -90,25 +94,26 @@ a:hover {
     border-radius: 9999px;
 }
 
+/* ============================================================
+   GLOBAL FORM INPUTS
+   ============================================================ */
 .inputs_group {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    padding: 15px 0px;
-    margin: 0px;
+    padding: 15px 0;
 }
 
-.input_container, .textarea_container {
+.input_container,
+.textarea_container {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin: 0px;
     position: relative;
 }
 
 .input_label {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
     text-align: start;
     position: relative;
 }
@@ -117,9 +122,10 @@ a:hover {
     color: red;
     position: absolute;
     top: 50%;
-    left: 0px;
+    left: 0;
     transform: translateY(-50%);
 }
+
 .input_field {
     position: relative;
 }
@@ -140,14 +146,16 @@ a:hover {
 }
 
 .input:focus {
-    border: 2px solid var(--main-color);
+    border-color: var(--main-color);
 }
 
-.input::placeholder, textarea::placeholder {
+.input::placeholder,
+textarea::placeholder {
     color: #727272;
     font-size: var(--font-size-sm);
 }
 
+/* أيقونة داخل الحقل (أو زر إظهار/إخفاء كلمة المرور) */
 .input_icon {
     display: flex;
     align-items: center;
@@ -156,6 +164,15 @@ a:hover {
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
+    /* تجاوز الـ global button styles */
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+}
+
+.input_icon:hover {
+    background: transparent;
 }
 
 .input_icon img {
@@ -172,12 +189,12 @@ label {
     justify-content: space-between;
 }
 
+/* ============================================================
+   LOADER
+   ============================================================ */
 .mainLoader {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-color: var(--main-color);
     z-index: 999999999999;
     display: flex;
@@ -186,27 +203,184 @@ label {
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
-    animation: slideDownFadeOut .3s ease-in-out forwards;
+    animation: slideDownFadeOut 0.3s ease-in-out forwards;
 }
 
 @keyframes slideDownFadeOut {
     0% {
-        opacity: .9;
+        opacity: 0.9;
         transform: translateY(0);
     }
 
     33% {
-        opacity: .6;
+        opacity: 0.6;
         transform: translateY(33%);
     }
 
     66% {
-        opacity: .3;
+        opacity: 0.3;
         transform: translateY(66%);
     }
 
     100% {
         opacity: 0;
         transform: translateY(100%);
+    }
+}
+
+/* ============================================================
+   UTILITY CLASSES — مشتركة عبر المشروع كله
+   ============================================================ */
+
+/* ── صفحات المصادقة (login / register / forgot / reset) ── */
+.page-center {
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ececec;
+    padding: 20px;
+}
+
+/* ── البطاقة البيضاء المشتركة ── */
+.auth-box {
+    background-color: var(--color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+/* ── حاوية صفحات UserProfile الفرعية ── */
+.userprofile-page {
+    flex: 1;
+    padding-top: 30px;
+}
+
+/* ── Header موحد لصفحات UserProfile الفرعية ── */
+.userProfile_header {
+    border-bottom: 2px solid var(--border-color);
+    padding-inline-start: 20px;
+    padding-bottom: 20px;
+}
+
+.userProfile_header h2 {
+    font-size: 20px;
+}
+
+/* ── شبكة الإعلانات (4 → 3 → 2 أعمدة) ── */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+@media (max-width: 1024px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
+
+/* ── خلفية النوافذ المنبثقة (modal) ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 15, 15, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999999;
+    backdrop-filter: blur(2px);
+}
+
+/* ── رسائل الأخطاء والنجاح ── */
+.error-msg {
+    width: 100%;
+    color: red;
+    font-size: var(--font-size-sm);
+    text-align: center;
+}
+
+.success-msg {
+    text-align: center;
+    color: #28a745;
+    background: #e9fbe9;
+    border: 1px solid #b2f2bb;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    width: fit-content;
+    margin-inline: auto;
+    font-weight: bold;
+    animation: fadeInUp 0.4s ease-in-out;
+}
+
+/* ── screen-reader only ── */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ── تحذير الإعلام (isLoading skeleton grid) ── */
+.isLoading {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+@media (max-width: 1024px) {
+    .isLoading {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .isLoading {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================================
+   SHARED ANIMATIONS
+   ============================================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
     }
 }
