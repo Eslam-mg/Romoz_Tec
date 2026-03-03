@@ -1,0 +1,116 @@
+/*--------------- toast-warning --------------- */
+/*--------------- toast-warning --------------- */
+.toast_warning {
+    width: 100%;
+    max-width: 350px;
+    padding: 0px 10px;
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translate(-50%, 10px);
+    z-index: 99999;
+}
+
+.toast_container {
+    background-color: #fff;
+    color: #6b7280;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-in, fadeOut 0.5s ease-out 2.5s forwards;
+    position: relative;
+}
+
+.toast-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: #fff7ed;
+    color: #f97316;
+    border-radius: 0.5rem;
+}
+
+.toast-svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.toast-message {
+    margin-left: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.toast-close-btn {
+    background-color: #fff;
+    color: #9ca3af;
+    border-radius: 0.5rem;
+    padding: 0.375rem;
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.toast-close-btn:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+.toast-close-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
+.progress-line {
+    background-color: #f97316;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    top: 90%;
+    left: 24px;
+    right: 18px;
+    animation: fadeLeft ease-out 3s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        left: 50%;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes fadeLeft {
+    from {
+        left: 24px;
+    }
+
+    to {
+        left: 100%;
+    }
+}
