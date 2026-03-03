@@ -1,12 +1,15 @@
+/* adCardStyle.css — إزالة التكرار الداخلي في نفس الملف */
+
 .ad_card {
-    background: #fff;
+    background: var(--color);
     border: 1px solid var(--main-color);
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .ad_card:hover {
@@ -25,10 +28,11 @@
 }
 
 .ad_card .card_image img {
-    height: 100%;
     width: 100%;
+    height: 100%;
     position: absolute;
-    inset: 0px;
+    inset: 0;
+    object-fit: cover;
 }
 
 .ad_card .card_user {
@@ -36,11 +40,10 @@
     align-items: center;
     gap: 8px;
     margin: 5px 10px;
-    cursor: pointer;
     width: fit-content;
 }
 
-.ad_card .card_user .img_container {
+.ad_card .card_user .img_container .user_img {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,6 +52,18 @@
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid #ddd;
+    flex-shrink: 0;
+}
+
+.ad_card .card_user .img_container .user_icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    border-radius: 50%;
 }
 
 .ad_card .card_user img {
@@ -58,23 +73,21 @@
 }
 
 .card_body {
-    padding: 0px 12px;
+    padding: 0 12px;
 }
 
 .card_body h3 {
-    font-size: 16px;
+    font-size: var(--font-size-md);
     font-weight: bold;
     color: #333;
     margin: 0;
-    padding: 0px;
 }
 
 .card_body .mapPin_timer {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     color: #777;
     margin-top: 3px;
 }
@@ -95,40 +108,48 @@
 
 .card_footer {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
     color: var(--main-color);
-    padding: 0px 15px;
+    padding: 5px 15px;
     margin-top: 5px;
 }
 
 .card_footer .card_footer_price {
-    font-size: 16px;
+    font-size: var(--font-size-md);
     font-weight: bold;
 }
 
 .card_footer .hart_icon {
-    cursor: pointer;
+    background: transparent;
+    padding: 0;
+    color: inherit;
 }
 
+.card_footer .hart_icon:hover {
+    background: transparent;
+}
+
+/* ── Tablet ── */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .ad_card .card_image {
         height: 150px;
     }
 
     .ad_card .card_user {
-        margin: 0px 8px;
-        margin-top: 5px;
+        margin: 5px 8px;
     }
+
     .ad_card .card_user .img_container {
         width: 27px;
         height: 27px;
     }
 }
 
+/* ── Mobile ── */
 @media (max-width: 768px) {
-    .card_image {
+    .ad_card .card_image {
         height: 120px;
     }
 
@@ -138,31 +159,20 @@
     }
 
     .card_body {
-        padding: 0px 10px;
+        padding: 0 10px;
+    }
+
+    .card_body h3 {
+        font-size: var(--font-size-sm);
     }
 
     .card_user span,
     .mapPin_timer span {
         font-size: 12px;
-        font-weight: bold;
-    }
-
-    .details_link {
-        padding: 5px 10px;
-        font-size: 12px;
-    }
-
-    .card_body h3 {
-        font-size: 14px;
-    }
-
-    .card_body h3 {
-        font-size: 14px;
     }
 
     .card_footer .card_footer_price {
-        font-size: 14px;
-        font-weight: bold;
+        font-size: var(--font-size-sm);
     }
 }
 
@@ -172,31 +182,17 @@
     }
 
     .ad_card .card_user {
-        padding: 0px;
         gap: 5px;
-        margin: 0px 5px;
-        margin-top: 5px;
+        margin: 5px;
     }
 
-    .card_body .mapPin_timer {
-        padding: 0px;
-    }
-
-    .card_body .mapPin_timer .mapPin,
-    .card_body .mapPin_timer .timer {
-        gap: 1px;
-    }
-
-    .card_body .mapPin_timer .mapPin .mapPin_icon,
-    .card_body .mapPin_timer .timer .timer_icon {
-        display: flex;
+    .card_body .mapPin_timer .mapPin_icon,
+    .card_body .mapPin_timer .timer_icon {
         width: 13px;
         height: 13px;
-        padding: 0px;
     }
 
     .card_footer {
         font-size: 12px;
-        font-weight: bold;
     }
 }
