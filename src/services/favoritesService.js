@@ -25,7 +25,7 @@ export async function toggleFavorite(category, adId, token) {
 /**
 * remove an ad from favorites
 */
-export async function toggleFavorite(category, adId, token) {
+export async function removeFavorite(category, adId, token) {
     const response = await fetch(`${BASE_URL}/favorites/${category}/${adId}`, {
         method: "DELETE",
         headers: {
