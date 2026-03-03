@@ -169,10 +169,19 @@
     background-color: #AAFFEE80;
 }
 
-.aboutUsPlatform_line {
+.aboutUsPlatform_category_icon, .aboutUsPlatform_category_grayIcon {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--main-color);
+}
+
+.aboutUsPlatform_category_icon {
+    color: var(--main-color);
+}
+
+.aboutUsPlatform_category_grayIcon {
+    color: #727272;
 }
 
 .aboutUsPlatform_line img {
@@ -335,15 +344,12 @@
     color: var(--main-color);
     background-color: var(--color);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     border-radius: 50%;
     margin-bottom: 8px;
 }
-.aboutUsTeam_icon img {
-    width: 35px;
-    height: 35px;
-}
+
 .aboutUsTeam_overlay h3 {
     font-size: 20px;
     margin-bottom: 8px;

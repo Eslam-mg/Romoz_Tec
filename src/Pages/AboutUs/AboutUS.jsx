@@ -1,27 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useSEO from "../../hooks/useSEO";
 import "./aboutUsStyle.css";
+import { CarsIcon, DevicesIcon, JobsIcon, RealEstateIcon, WebcamIcon, EyeIcon, HeartIcon } from '../../Components/UI/Icons/Icons';
 
 export default function AboutUS() {
+    useSEO("من نحن", "ماشي منصه إعلانات مبتكرة تربطك بكل ما تحتاجه في مكان واحد ، سواء إن كنت تريد بيع سيارتك ، تقوم بعرض عقارات ، شراء إلكترونيات ، أو حتي تبحث عن منتجات متنوعه . تجدها كلها بسهوله وسرعه وبأعلي درجات الأمان.");
     const data = [
         {
             id: 1,
             image: "./images/team.webp",
-            icon: "/Icons/aboutUs/Webcam.svg",
+            icon: WebcamIcon,
             title: "هدفنا",
             desc: "توصيل البائع بالمشتري بسرعة وأمانة",
         },
         {
             id: 2,
             image: "./images/team1.webp",
-            icon: "/Icons/aboutUs/Eye.svg",
+            icon: EyeIcon,
             title: "رؤيتنا",
             desc: "توفير بيئة آمنة وموثوقة للتجارة",
         },
         {
             id: 3,
             image: "./images/team2.webp",
-            icon: "/Icons/aboutUs/Heart.svg",
+            icon: HeartIcon,
             title: "قيمنا",
             desc: "الشفافية، الثقة، والمصداقية",
         },
@@ -48,7 +51,7 @@ export default function AboutUS() {
         </div>
     );
     return (
-        <div>
+        <section>
             <div className="aboutUsLayout">
                 <div className="aboutUsLayout_landing">
                     <h1>من نحن؟</h1>
@@ -72,30 +75,22 @@ export default function AboutUS() {
                     <div className="aboutUsPlatform_categories_container">
                         {/* أيقونات الفئات */}
                         <div className="aboutUsPlatform_category">
-                            <div className="aboutUsPlatform_line">
-                                <img src="/Icons/categore4.svg" alt="العقارات" />
-                            </div>
+                            <RealEstateIcon width={20} height={20} className='aboutUsPlatform_category_icon' />
                             <span className="aboutUsPlatform_line_text_real_estate">عقارات</span>
                         </div>
 
                         <div className="aboutUsPlatform_category">
-                            <span className="aboutUsPlatform_line">
-                                <img src="/Icons/aboutUs/grayCar.svg" alt="السيارات" />
-                            </span>
+                            <CarsIcon width={20} height={20} className='aboutUsPlatform_category_grayIcon' />
                             <span className="aboutUsPlatform_line_text_car">سيارات</span>
                         </div>
 
                         <div className="aboutUsPlatform_category">
-                            <span className="aboutUsPlatform_line">
-                                <img src="/Icons/categore5.svg" alt="الأجهزة" />
-                            </span>
+                            <DevicesIcon width={20} height={20} className='aboutUsPlatform_category_icon' />
                             <span className="aboutUsPlatform_line_text_devices">الأجهزة</span>
                         </div>
 
                         <div className="aboutUsPlatform_category">
-                            <span className="aboutUsPlatform_line">
-                                <img src="/Icons/aboutUs/grayJobs.svg" alt="الوظائف" />
-                            </span>
+                            <JobsIcon width={20} height={20} className='aboutUsPlatform_category_grayIcon' />
                             <span className="aboutUsPlatform_line_text_jobs">الوظائف</span>
                         </div>
                     </div>
@@ -117,16 +112,19 @@ export default function AboutUS() {
             <div className="aboutUsTeam">
                 <h2 className="aboutUsTeam_title">هدفنا ورؤيتنا وقيمنا</h2>
                 <div className="aboutUsTeam_container">
-                    {data.map((item) => (
-                        <div className="aboutUsTeam_box" key={item.id}>
-                            <img src={`${item.image}`} alt={item.title} />
-                            <div className="aboutUsTeam_overlay">
-                                <div className="aboutUsTeam_icon"><img src={item.icon} alt="item.title" /></div>
-                                <h3>{item.title}</h3>
-                                <p>{item.desc}</p>
+                    {data.map((item) => {
+                        const Icon = item.icon
+                        return (
+                            <div className="aboutUsTeam_box" key={item.id}>
+                                <img src={`${item.image}`} alt={item.title} />
+                                <div className="aboutUsTeam_overlay">
+                                    <Icon width={36} height={36} className='aboutUsTeam_icon' />
+                                    <h3>{item.title}</h3>
+                                    <p>{item.desc}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })}
                 </div>
             </div>
 
@@ -164,6 +162,6 @@ export default function AboutUS() {
                     </div>
                 </button>
             </div>
-        </div>
+        </section>
     )
 };
