@@ -109,7 +109,7 @@ export default function Navbar() {
                   aria-expanded={toggleProfileCard}
                 >
                   {userData?.profile_image === null ? (
-                    <UserIcon width={24} height={24}/>
+                    <UserIcon width={24} height={24} className="user_icon"/>
                   ) : (
                     <img src={userData?.profile_image} alt={`صورة ${getInitials(userData?.name)}`} className="user_img" />
                   )}
