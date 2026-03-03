@@ -1,15 +1,18 @@
 import React from "react";
-import "./contactUs.css";
+import "./contactUsStyle.css";
+import useSEO from "../../hooks/useSEO";
+import { EmailIcon, PhoneIcon, UserIcon } from "../../Components/UI/Icons/Icons";
 
 const ContactUs = () => {
+  useSEO("تواصل معانا", "نرحب بتواصلك معنا لأي استفسار أو ملاحظة، فريقنا جاهز لمساعدتك.");
   return (
-    <div className="contact-us">
+    <section className="contact-us">
       <h2 className="contact_title">اتصل بنا</h2>
       <p className="contact_description">
         نرحب بتواصلك معنا لأي استفسار أو ملاحظة، فريقنا جاهز لمساعدتك.{" "}
       </p>
       <div className="contact_us_container">
-        {/* القسم الأيمن - نموذج التواصل */}
+        {/* Right Section - Communication Form */}
         <div className="contact_us_container_right">
           <div className="contact_us_container_right_content">
             <div className="contact_us_container_right_icon"><img src="/Icons/ChatTeardrop.svg" alt="chat" /></div>
@@ -19,48 +22,60 @@ const ContactUs = () => {
             </h3>
           </div>
 
-          {/* نموذج التواصل */}
+          {/* Communication Model */}
           <form className="contact_us_form">
-            {/* الاسم الكامل */}
-            <label className="contact_us_label">الاسم الكامل</label>
-            <div className="input-group">
-              <img src="/Icons/Auth/user.svg" alt="user" className="input-icon" />
-              <input
-                type="text"
-                className="contact_us_input"
-                placeholder="ادخل اسمك الكامل"
-              />
+            {/* full name */}
+            <div className="input_container">
+              <label htmlFor="name" className="input_label">
+                <span>الاسم الكامل</span>
+              </label>
+              <div className="input_field">
+                <input type="text" name="name" id="name" className="input" placeholder="ادخل اسمك الكامل" />
+                <UserIcon width={24} height={24} className="input_icon" />
+              </div>
             </div>
 
             {/* البريد الإلكتروني */}
-            <label className="contact_us_label">البريد الإلكتروني</label>
-            <div className="input-group">
-              <img src="/Icons/Auth/email.svg" alt="email" className="input-icon" />
-              <input
-                type="text"
-                className="contact_us_input"
-                placeholder="ادخل بريدك الالكتروني"
-              />
+            <div className="input_container">
+              <label htmlFor="email" className="input_label">
+                <span>بريدك الإلكتروني</span>
+              </label>
+              <div className="input_field">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="input"
+                  placeholder="بريدك الإلكتروني"
+                  autoComplete="email"
+                />
+                <EmailIcon width={24} height={24} className="input_icon" />
+              </div>
             </div>
 
             {/* رقم الجوال */}
-            <label className="contact_us_label">رقم الجوال (اختياري)</label>
-            <div className="input-group">
-              <img src="/Icons/Auth/phone.svg" alt="phone" className="input-icon" />
-              <input
-                type="text"
-                className="contact_us_input"
-                placeholder="ادخل رقم جوالك"
-              />
+            <div className="input_container">
+              <label htmlFor="phone" className="input_label">
+                <span>رقم الجوال</span>
+              </label>
+              <div className="input_field">
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  className="input"
+                  placeholder="ادخل رقم جوالك"
+                />
+                <PhoneIcon width={24} height={24} className="input_icon" />
+              </div>
             </div>
 
             {/* الرسالة */}
-            <label className="contact_us_label">رسالتك</label>
-            <div className="input-group textarea-group">
-              <textarea
-                className="contact_us_textarea"
-                placeholder="اكتب رسالتك هنا..."
-              ></textarea>
+            <div className="input_container">
+              <label htmlFor="message" className="input_label">رسالتك</label>
+              <div className="input_field">
+                <textarea className="contact_us_textarea" placeholder="اكتب رسالتك هنا..." />
+              </div>
             </div>
 
             {/* زر إرسال */}
@@ -71,23 +86,23 @@ const ContactUs = () => {
           </form>
         </div>
 
-        {/* القسم الأيسر - بيانات التواصل */}
+        {/* Left section - Contact information */}
         <div className="contact_us_container_left">
           <div className="contact_us_container_left_content">
-            {/* بيانات التواصل المباشر */}
+            {/* Direct contact information */}
             <div className="contact_us_container_left_top">
               <h1>تواصل معنا مباشرة:</h1>
               <div>
                 <p> البريد الإلكتروني</p>
                 <span>
-                  <img src="/Icons/greenEmail.svg" alt="email" className="contact_us_container_left_icon" />
+                  <EmailIcon width={24} height={24} className="contact_us_container_left_icon" />
                   <a href="mailto:support@mashee.com">support@mashee.com</a>
                 </span>
               </div>
               <div>
                 <p>خدمة العملاء</p>
                 <span>
-                  <img src="/Icons/greenPhone.svg" alt="phone" className="contact_us_container_left_icon" />
+                  <PhoneIcon width={24} height={24} className="contact_us_container_left_icon" />
                   <a href="#">متاح من 9 صباحًا إلى 6 مساءً</a>
                 </span>
               </div>
@@ -111,7 +126,7 @@ const ContactUs = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 export default ContactUs;
