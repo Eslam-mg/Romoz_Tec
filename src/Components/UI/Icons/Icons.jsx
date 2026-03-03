@@ -84,3 +84,12 @@ export const EyeOffIcon = ({ className = "", width = 22, height = 22 }) => (
         </svg>
     </div>
 );
+
+export const PlusIcon = ({ className = "", width = 22, height = 22 }) => (
+    <div className={className}>
+        <svg width={width} height={height} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M5 12h14" />
+            <path d="M12 5v14" />
+        </svg>
+    </div>
+);

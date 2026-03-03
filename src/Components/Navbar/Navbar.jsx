@@ -7,7 +7,7 @@ import ToastWarning from "../UI/ToastWarning/ToastWarning";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { getInitials } from "../../utils/helpers";
 import "./navbarStyle.css";
-import { UserIcon } from "../UI/Icons/Icons";
+import { PlusIcon, UserIcon } from "../UI/Icons/Icons";
 
 // Re-export for compatibility with old imports
 export { default as ToastWarning } from "../UI/ToastWarning/ToastWarning";
@@ -54,7 +54,7 @@ export default function Navbar() {
 
   return (
     <header className="navbar">
-      <div className="navbar_container">
+      <nav className="navbar_container">
         <div className="logo">
           <NavLink to="/" onClick={closeMenu} aria-label="الصفحة الرئيسية - ماشي">
             <img src="/images/logo.svg" alt="شعار ماشي" />
@@ -92,7 +92,7 @@ export default function Navbar() {
 
             <NavLink to="/advertisements" className="advertisements_buttom">
               <span>اضف عرضك</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
+              <PlusIcon width={22} height={22}/>
             </NavLink>
           </div>
 
@@ -143,7 +143,7 @@ export default function Navbar() {
             />
           )}
         </div>
-      </div>
+      </nav>
 
       {/* Alerts */}
       {isLoggedIn && showToast && userData?.area === null && (

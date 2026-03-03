@@ -125,6 +125,16 @@
   text-decoration: none;
 }
 
+.advertisements_buttom:hover{
+  color: white;
+}
+
+.advertisements_buttom div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* Menu Toggle */
 .menu-mobile-toggle {
   display: none;
