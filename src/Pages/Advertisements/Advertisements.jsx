@@ -1,25 +1,25 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import AddHeader from '../../Components/AdvertisementsComponents/AddHeader/AddHeader';
 import Category from './Category/Category';
-import './style.css'
+import './style.css';
 import Information from './Information/Information';
 import UploadImages from './UploadImages/UploadImages';
-import Location from './Location/Location';
 import SellerData from './SellerData/SellerData';
 import ConfirmAd from './ConfirmAd/ConfirmAd';
 import { validationSchemas } from "./validationSchemas";
 import { useFormik } from 'formik';
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import LoginRequiredCard from '../../Components/AdvertisementsComponents/LoginRequiredCard/LoginRequiredCard';
+import PrivateRoute from '../../Components/Auth/PrivateRoute';
+import ToastWarning from '../../Components/UI/ToastWarning/ToastWarning';
 import { Link, useNavigate } from 'react-router-dom';
-import { ToastWarning } from '../../Components/Navbar/Navbar';
 import { contextData } from '../../Context/Context';
+import useSEO from '../../hooks/useSEO';
 
 export default function Advertisements() {
-    // Step management: 1=category, 2=details, 3=review
+    useSEO("إضافة إعلان", "أضف إعلانك مجاناً على ماشي وصل إلى آلاف المشترين.");
     const { userData } = useContext(contextData);
-    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+    const [cookies] = useCookies(["token"]);
     const navigate = useNavigate();
     const token = cookies?.token?.data?.token;
     const [showToast, setShowToast] = useState(true);
@@ -248,105 +248,101 @@ export default function Advertisements() {
     };
 
     return (
-        <>
-            {token && token !== "undefined" ?
-                <>
-                    <form onSubmit={formik.handleSubmit} className='Advertisements'>
-                        {/* header */}
-                        <AddHeader currentStep={step} successMessage={successMessage} />
+        <PrivateRoute token={token}>
+            <form onSubmit={formik.handleSubmit} className='Advertisements'>
+                {/* header */}
+                <AddHeader currentStep={step} successMessage={successMessage} />
 
-                        {/* الخطوة الأولى */}
-                        {step === 1 && (
-                            <Category formik={formik} />
-                        )}
+                {/* الخطوة الأولى */}
+                {step === 1 && (
+                    <Category formik={formik} />
+                )}
 
-                        {/* المعلومات  */}
-                        {step === 2 && (
-                            <Information formik={formik} prevStep={prevStep} />
-                        )}
+                {/* المعلومات  */}
+                {step === 2 && (
+                    <Information formik={formik} prevStep={prevStep} />
+                )}
 
-                        {/* رفع الصور */}
-                        {step === 3 && (
-                            <UploadImages formik={formik} />
-                        )}
+                {/* رفع الصور */}
+                {step === 3 && (
+                    <UploadImages formik={formik} />
+                )}
 
-                        {/* رفع الموقع */}
-                        {/* {step === 4 && (
+                {/* رفع الموقع */}
+                {/* {step === 4 && (
                             <Location formik={formik} />
                         )} */}
 
-                        {/* بيانات البائع */}
-                        {step === 4 && (
-                            <SellerData formik={formik} />
-                        )}
+                {/* بيانات البائع */}
+                {step === 4 && (
+                    <SellerData formik={formik} />
+                )}
 
-                        {/* التاكيد */}
-                        {step === 5 && (
-                            <ConfirmAd formik={formik} isLoading={isLoading} errorMessage={errorMessage} />
-                        )}
+                {/* التاكيد */}
+                {step === 5 && (
+                    <ConfirmAd formik={formik} isLoading={isLoading} errorMessage={errorMessage} />
+                )}
 
-                        <div className="buttons">
-                            <button type='button' className="btn prev" style={{ display: step === 1 ? "none" : "flex" }} onClick={prevStep}>
-                                <img src="./advertisements/ArrowRight.svg" alt="ArrowRight" className='arrowPrev' />
-                                <span>السابق</span>
-                            </button>
-                            <Link to='/' className="link_prev" style={{ display: step === 1 ? "block" : "none" }}>
-                                <span>العودة للموقع</span>
-                            </Link>
-                            <button
-                                type='button'
-                                className="btn next"
-                                onClick={nextStep}
-                                style={{ opacity: step < 5 ? 1 : 0 }}
-                            >
-                                <span>التالي</span>
-                                <img src="./advertisements/ArrowLeft.svg" alt="ArrowLeft" className='arrowNext' />
-                            </button>
+                <div className="buttons">
+                    <button type='button' className="btn prev" style={{ display: step === 1 ? "none" : "flex" }} onClick={prevStep}>
+                        <img src="./advertisements/ArrowRight.svg" alt="ArrowRight" className='arrowPrev' />
+                        <span>السابق</span>
+                    </button>
+                    <Link to='/' className="link_prev" style={{ display: step === 1 ? "block" : "none" }}>
+                        <span>العودة للموقع</span>
+                    </Link>
+                    <button
+                        type='button'
+                        className="btn next"
+                        onClick={nextStep}
+                        style={{ opacity: step < 5 ? 1 : 0 }}
+                    >
+                        <span>التالي</span>
+                        <img src="./advertisements/ArrowLeft.svg" alt="ArrowLeft" className='arrowNext' />
+                    </button>
+                </div>
+            </form>
+
+            {/* Modal */}
+            <div className="modal_fade" style={{ display: successMessage ? "flex" : "none" }}>
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <div className="img_avatar">
+                                <img src="./advertisements/CheckCircleGreen.svg" alt="CheckCircleGreen" />
+                            </div>
+                            <h1 className="modal-title">تم نشر إعلانك بنجاح!</h1>
+                            <p>إعلانك الآن مرئي لآلاف المشترين المهتمين</p>
                         </div>
-                    </form>
+                        <div className="modal-body">
+                            <button type="button" className="btn btn-secondary" onClick={() => { setSuccessMessage(false); navigate(`/${categoryName}/${ads_id}`) }}>
+                                <img src="./advertisements/eye.svg" alt="eye" />
+                                <span>شاهد إعلانك</span>
+                            </button>
 
-                    {/* Modal */}
-                    <div className="modal_fade" style={{ display: successMessage ? "flex" : "none" }}>
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <div className="img_avatar">
-                                        <img src="./advertisements/CheckCircleGreen.svg" alt="CheckCircleGreen" />
-                                    </div>
-                                    <h1 className="modal-title">تم نشر إعلانك بنجاح!</h1>
-                                    <p>إعلانك الآن مرئي لآلاف المشترين المهتمين</p>
-                                </div>
-                                <div className="modal-body">
-                                    <button type="button" className="btn btn-secondary" onClick={() => { setSuccessMessage(false); navigate(`/${categoryName}/${ads_id}`) }}>
-                                        <img src="./advertisements/eye.svg" alt="eye" />
-                                        <span>شاهد إعلانك</span>
-                                    </button>
-
-                                    <div className="special-adver">
-                                        <h4>
-                                            <img src="./advertisements/StarGold.svg" alt="StarGold" />
-                                            <span>ميز إعلانك ليظهر في النتائج الأولى</span>
-                                        </h4>
-                                        <p>زد من فرص مشاهدة إعلانك بـ 5 أضعاف مع خدمة التمي</p>
-                                        <button type="button" className="btn btn-primary">
-                                            <img src="./advertisements/StarWhite.svg" alt="StarWhite" />
-                                            <span>شاهد إعلانك</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="modal-footer">
-                                    <p>سيتم مراجعة إعلانك خلال 24 ساعة للتأكد من مطابقته لشروط الخدمة</p>
-                                </div>
+                            <div className="special-adver">
+                                <h4>
+                                    <img src="./advertisements/StarGold.svg" alt="StarGold" />
+                                    <span>ميز إعلانك ليظهر في النتائج الأولى</span>
+                                </h4>
+                                <p>زد من فرص مشاهدة إعلانك بـ 5 أضعاف مع خدمة التمي</p>
+                                <button type="button" className="btn btn-primary">
+                                    <img src="./advertisements/StarWhite.svg" alt="StarWhite" />
+                                    <span>شاهد إعلانك</span>
+                                </button>
                             </div>
                         </div>
+                        <div className="modal-footer">
+                            <p>سيتم مراجعة إعلانك خلال 24 ساعة للتأكد من مطابقته لشروط الخدمة</p>
+                        </div>
                     </div>
-                    <div className="toastLocationWarning">
-                        {Boolean(token) && showToast && userData?.area === null && (<ToastWarning message="الرجاء إضافة الموقع قبل المتابعة." onClose={() => setShowToast(false)} />)}
-                    </div>
-                </>
-                :
-                <LoginRequiredCard />
-            }
-        </>
-    )
-}
+                </div>
+            </div>
+            <div className="toastLocationWarning">
+                {Boolean(token) && showToast && userData?.area === null && (
+                    <ToastWarning message="الرجاء إضافة الموقع قبل المتابعة." onClose={() => setShowToast(false)} />
+                )}
+            </div>
+        </PrivateRoute>
+    );
+};
