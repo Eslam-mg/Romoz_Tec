@@ -7,6 +7,7 @@ import { fetchAdDetails } from "../../services/adsService";
 import { STORAGE_URL } from "../../services/api";
 import useSEO from "../../hooks/useSEO";
 import "./detailsLayoutStyle.css";
+import { ShieldIcon, UserIcon } from "../../Components/UI/Icons/Icons";
 
 export default function DetailsLayout() {
   const [loginModel, setLoginModel] = useState(false);
@@ -86,7 +87,7 @@ export default function DetailsLayout() {
               <span>مميز</span>
             </div>
             <div className="Shield">
-              <div className="Shield_icon"><img src="/Icons/Shield.svg" alt="" aria-hidden="true" /></div>
+              <ShieldIcon width={22} height={22} className="Shield_icon" />
               <span>بائع موثوق</span>
             </div>
             <span className="details-close-title-empty">
@@ -107,18 +108,19 @@ export default function DetailsLayout() {
                 <p>جاري تحميل الصورة...</p>
               )}
             </div>
+
             <div className="details-lay-image-thumbs">
               {images.map((img, index) => {
                 const fullImg = `${STORAGE_URL}/${img}`;
                 return (
-                  <img
-                    key={index}
-                    src={fullImg}
-                    alt={`صورة ${index + 1}`}
-                    loading="lazy"
-                    onClick={() => setMainImage(fullImg)}
-                    className={mainImage === fullImg ? "active-thumb" : ""}
-                  />
+                  <div key={index} onClick={() => setMainImage(fullImg)} className={`thumb_container ${mainImage === fullImg ? "active-thumb" : ""}`}>
+                    <img
+                      src={fullImg}
+                      alt={`صورة ${index + 1}`}
+                      loading="lazy"
+                      className="thumb_img"
+                    />
+                  </div>
                 );
               })}
             </div>
@@ -172,21 +174,15 @@ export default function DetailsLayout() {
             <div className="details-left-top">
               <div className="details-left-top-user">
                 <Link to={`/user/${ad_details?.seller?.name}/${ad_details?.user?.id_user}`} className="card_user">
-                  <div className="card_user_image">
-                    {ad_details?.user?.profile_image ? (
+                  {ad_details?.user?.profile_image ? (
+                    <div className="card_user_image">
                       <img src={ad_details?.user?.profile_image} alt={ad_details?.seller?.name} />
-                    ) : (
-                      <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 20a6 6 0 0 0-12 0" /><circle cx={12} cy={10} r={4} /><circle cx={12} cy={12} r={10} /></svg>
-                    )}
-                  </div>
-                  <div className="user_info">
-                    <div className="user_info_header">
-                      <h2>{ad_details?.seller?.name}</h2>
-                      <div className="Shield">
-                        <div className="Shield_icon"><img src="/Icons/Shield.svg" alt="" aria-hidden="true" /></div>
-                        <span>موثوق</span>
-                      </div>
                     </div>
+                  ) : (
+                    <UserIcon className="user_icon"/>
+                  )}
+                  <div className="user_info">
+                    <h2>{ad_details?.seller?.name}</h2>
                     <p className="details-left-top-user-member">
                       <span>عضو منذ </span>
                       <span>{ad_details?.user?.account_created_at ? timeSince(ad_details?.user?.account_created_at) : ""}</span>

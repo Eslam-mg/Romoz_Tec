@@ -110,6 +110,21 @@ export const WebcamIcon = ({ className = "", width = 22, height = 22 }) => (
     </div>
 );
 
+export const ShieldIcon = ({ className = "", width = 22, height = 22 }) => (
+    <div className={className}>
+        <svg width={width} height={height} viewBox="0 0 18 18" fill="none"aria-hidden="true">
+            <g clipPath="url(#clip0_2197_15040)">
+                <path d="M15.1875 7.875V3.9375C15.1875 3.78832 15.1282 3.64524 15.0227 3.53975C14.9173 3.43426 14.7742 3.375 14.625 3.375H3.375C3.22582 3.375 3.08274 3.43426 2.97725 3.53975C2.87176 3.64524 2.8125 3.78832 2.8125 3.9375V7.875C2.8125 14.625 9 16.3125 9 16.3125C9 16.3125 15.1875 14.625 15.1875 7.875Z" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
+            </g>
+            <defs>
+                <clipPath id="clip0_2197_15040">
+                    <rect width={18} height={18} fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+    </div>
+);
+
 // ---------------- categories icon ----------------
 // ---------------- categories icon ----------------
 export const RealEstateIcon = ({ className = "", width = 22, height = 22 }) => (
