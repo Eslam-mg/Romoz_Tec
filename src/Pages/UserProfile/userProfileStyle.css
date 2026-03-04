@@ -1,3 +1,5 @@
+/* userProfileStyle.css — .userProfile_header نُقل إلى index.css */
+
 .userProfile {
     background-color: #F5F5F5;
     display: flex;
@@ -11,29 +13,19 @@
     position: absolute;
     top: 40px;
     left: 20px;
+    background: transparent;
+    color: var(--header-color);
+    padding: var(--space-sm);
 }
 
-.userProfile_header {
-    border-bottom: 2px solid var(--border-color);
-    padding-inline-start: 20px;
-    padding-bottom: 20px;
-}
-
-.userProfile_header h2 {
-    font-size: 20px;
-}
-
-.userProfile_header h2 span {
-    color: var(--main-color);
-}
-
-.userProfile_header h2 p {
-    color: var(--text-color);
+.userProfile .toggle_sidebar:hover {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 @media (max-width: 768px) {
     .userProfile .toggle_sidebar {
-        display: block;
-        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
