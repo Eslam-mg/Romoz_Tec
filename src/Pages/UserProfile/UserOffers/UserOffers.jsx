@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { contextData } from '../../../Context/Context';
-import { timeSince } from '../../SpecificCategory/SpecificCategory';
+import { timeSince } from '../../../utils/helpers';
+import { STORAGE_URL } from '../../../services/api';
+import { deleteUserOffer } from '../../../services/profileService';
 import SkeletonCard from '../../../Components/SkeletonCard/SkeletonCard';
-import "./userOffersStyle.css"
+import "./userOffersStyle.css";
 import { useNavigate } from 'react-router-dom';
 
 export default function UserOffers() {
@@ -14,26 +16,21 @@ export default function UserOffers() {
     const [selectedAd, setSelectedAd] = useState(null);
     const [deleting, setDeleting] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState(""); // Re-adding errorMessage state
     const deleteAdById = async (category, adId) => {
         try {
             setDeleting(true);
-            const response = await fetch(`https://mashi.coderaeg.com/api/profile/ealans/${category}/${adId}`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-            });
+            const { ok } = await deleteUserOffer(category, adId, token);
 
-            if (response.ok) {
+            if (ok) {
                 setSuccessMessage("تم حذف الإعلان بنجاح");
                 setTimeout(() => setSuccessMessage(""), 1000);
                 fetchUserAds();
             } else {
-                setError("حدث خطأ أثناء حذف الإعلان.");
+                setErrorMessage("حدث خطأ أثناء حذف الإعلان.");
             }
         } catch {
-            setError("فشل الاتصال بالسيرفر أثناء الحذف.");
+            setErrorMessage("فشل الاتصال بالسيرفر أثناء الحذف.");
         } finally {
             setDeleting(false);
             setShowModal(false);
@@ -48,7 +45,7 @@ export default function UserOffers() {
     }, [userID, token]);
 
     return (
-        <section className='userOffers_container'>
+        <section className='userprofile-page'>
             <header className='userProfile_header'>
                 <h2>قائمة عروضك</h2>
                 <p>تابع وأدِر جميع عروضك بسهولة من هنا</p>
@@ -62,9 +59,10 @@ export default function UserOffers() {
                         <div key={`${ad.category}_${ad.id_ads}`} className="advertisements_card">
                             <div className="card_image">
                                 <img
-                                    src={`https://mashi.coderaeg.com/storage/${ad.images[0]}`}
-                                    alt={ad.user.user_name}
+                                    src={`${STORAGE_URL}/${ad.images[0]}`}
+                                    alt={ad.information.title}
                                     className="ad_image"
+                                    loading="lazy"
                                 />
                             </div>
 
@@ -110,10 +108,10 @@ export default function UserOffers() {
                 </div>
             }
 
-            {successMessage && <p className="success">{successMessage}</p>}
+            {successMessage && <p className="success-msg">{successMessage}</p>}
 
             {showModal && (
-                <div className="modal_overlay">
+                <div className="modal-overlay" role="dialog" aria-modal="true" aria-label="تأكيد الحذف">
                     <div className="modal_box">
                         <h4>هل أنت متأكد من حذف هذا الإعلان؟</h4>
                         <p>لن تتمكن من استرجاعه بعد الحذف.</p>
@@ -138,4 +136,4 @@ export default function UserOffers() {
             )}
         </section>
     )
-}
+};
