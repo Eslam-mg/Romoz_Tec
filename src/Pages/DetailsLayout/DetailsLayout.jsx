@@ -7,7 +7,7 @@ import { fetchAdDetails } from "../../services/adsService";
 import { STORAGE_URL } from "../../services/api";
 import useSEO from "../../hooks/useSEO";
 import "./detailsLayoutStyle.css";
-import { ShieldIcon, UserIcon } from "../../Components/UI/Icons/Icons";
+import { PhoneIcon, ShieldIcon, UserIcon } from "../../Components/UI/Icons/Icons";
 
 export default function DetailsLayout() {
   const [loginModel, setLoginModel] = useState(false);
@@ -202,7 +202,7 @@ export default function DetailsLayout() {
                 <div className="details-left-top-user-buttons">
                   {ad_details?.seller?.phoneMessage && (
                     <button type="button" className="details-left-top-user-btn1" onClick={() => setLoginModel(true)}>
-                      <img src="/Icons/whitePhone.svg" alt="" aria-hidden="true" />
+                      <PhoneIcon className="phone_icon"/>
                       <span>تواصل</span>
                     </button>
                   )}
