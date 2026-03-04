@@ -1,11 +1,13 @@
 import React from "react";
 import "./homeStyle.css";
+import useSEO from "../../hooks/useSEO";
 import Slider from '../../Components/HomeComponent/Slider/Slider';
 import BlogCard from "../../Components/HomeComponent/BlogCard/BlogCard";
 import SellSeaction from "../../Components/HomeComponent/SellSeaction/SellSeaction";
 import CategoriesSection from "../../Components/HomeComponent/CategoriesSection/CategoriesSection";
 
 const Home = () => {
+  useSEO("منصة إعلانات", "موقع ماشي للإعلانات – بيع وشراء السيارات، العقارات، الجوالات والإلكترونيات بسهولة وأمان.");
   const card = [
     {
       id: 1,
