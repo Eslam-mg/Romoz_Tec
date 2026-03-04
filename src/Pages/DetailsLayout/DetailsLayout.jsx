@@ -133,7 +133,7 @@ export default function DetailsLayout() {
               <div className="attributes">
                 {attributeMapForDetails(ad_details)[details]?.map((item, index) => (
                   <div className="attribute_item" key={index}>
-                    <div className="attribute_item_icon"><img src={item.icon} alt="" aria-hidden="true" /></div>
+                    <div className="attribute_item_icon"><img src={item.icon} alt={item.label} aria-hidden="true" /></div>
                     <div className="attribute_item_text">
                       <span>{item.label}</span>
                       <span>{item.value}</span>

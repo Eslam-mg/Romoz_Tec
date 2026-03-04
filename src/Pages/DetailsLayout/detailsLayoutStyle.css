@@ -305,8 +305,23 @@
 .attribute_item_icon,
 .location_item_icon {
   background-color: #AAFFEE80;
-  padding: 10px;
   border-radius: var(--radius-sm);
+  color: var(--main-color);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attribute_item_icon img,
+.location_item_icon img {
+  width: 28px;
+  height: 28px;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .attribute_item_text,

@@ -109,13 +109,13 @@ export const saudiRegions = [
 export const attributeMapForDetails = (ad_details) => ({
     vehicles: [
         { icon: "/advertisements/car.svg", label: "الماركة", value: ad_details?.attributes?.brand },
-        { icon: "/advertisements/car.svg", label: "الموديل", value: ad_details?.attributes?.model },
+        { icon: "/Icons/carParts.svg", label: "الموديل", value: ad_details?.attributes?.model },
         { icon: "/advertisements/calendar.svg", label: "سنة الصنع", value: ad_details?.attributes?.year },
     ],
     realestate: [
         { icon: "/advertisements/buildings.svg", label: "نوع العقار", value: ad_details?.attributes?.realestateType },
-        { icon: "/Icons/adDetails/PersonArmsSpread.svg", label: "نوع الشارع", value: ad_details?.attributes?.streetType },
-        { icon: "/Icons/adDetails/ArrowsOutCardinal.svg", label: "الواجهة", value: ad_details?.attributes?.realestateFace },
+        { icon: "/Icons/PersonArmsSpread.svg", label: "نوع الشارع", value: ad_details?.attributes?.streetType },
+        { icon: "/Icons/ArrowsOutCardinal.svg", label: "الواجهة", value: ad_details?.attributes?.realestateFace },
     ],
     electronics: [
         { icon: "/advertisements/electronics.svg", label: "نوع الجهاز", value: ad_details?.attributes?.electronicType },
