@@ -89,9 +89,8 @@
 
 .userSideBar_container .userSidebar_content .userSidebar_buttons .logout_btn {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-    gap: 5px;
     background-color: var(--color);
     color: var(--header-color);
     border: 2px solid var(--main-color);
@@ -105,6 +104,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 30px;
+    height: 40px;
 }
 
 .userSideBar_container .userSidebar_content .userSidebar_links .userSidebar_links_group li .link.active {
