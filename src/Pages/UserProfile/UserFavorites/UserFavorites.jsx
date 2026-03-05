@@ -10,12 +10,12 @@ export default function UserFavorites() {
     }, [token]);
 
     return (
-        <section className='UserFavorites_container'>
+        <section className='userprofile-page'>
             <header className='userProfile_header'>
                 <h2>مفضلتك</h2>
                 <p>اعرض وأدر جميع إعلاناتك المحفوظة بسهولة</p>
             </header>
-            <div className="UserFavorites_body">
+            <div className="card-grid">
                 {Array.isArray(favorites) && favorites.length > 0 ? (
                     favorites.map((favorite) => (
                         <AdCard
@@ -30,7 +30,7 @@ export default function UserFavorites() {
                             area={favorite?.user?.area}
                             created_at={favorite?.created_at}
                             price={favorite?.information?.price}
-                            isFavorite= {false}
+                            isFavorite={false}
                         />
                     ))
                 ) : (

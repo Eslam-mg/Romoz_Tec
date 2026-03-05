@@ -1,7 +1,4 @@
-.UserFavorites_container {
-    flex: 1;
-    padding-top: 30px;
-}
+/* .userprofile-page و .userProfile_header يأتيان من index.css */
 
 .UserFavorites_body {
     display: grid;
@@ -11,7 +8,6 @@
 }
 
 @media (max-width: 1024px) {
-
     .UserFavorites_body {
         grid-template-columns: repeat(3, 1fr);
         gap: 15px;
@@ -19,7 +15,6 @@
 }
 
 @media (max-width: 768px) {
-
     .UserFavorites_body {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
