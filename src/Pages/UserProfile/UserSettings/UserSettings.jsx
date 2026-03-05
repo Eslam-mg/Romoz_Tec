@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import * as Yup from "yup";
 import LocationForm from '../../../Components/LocationForm/LocationForm';
 import DeleteAcount from '../../Auth/DeleteAcount/DeleteAcount';
+import { uploadProfileImage, uploadCoverImage } from '../../../services/profileService';
 
 export default function UserSettings() {
     const { userID, token, fetchUserData, userData } = useContext(contextData);
@@ -34,35 +35,21 @@ export default function UserSettings() {
         return webpFile;
     };
 
-    const sendImage = async (name, file, endPoint) => {
-        const formData = new FormData();
-        formData.append(name, file);
-
-        const response = await fetch(endPoint, {
-            method: "POST",
-            headers: { Authorization: `Bearer ${token}` },
-            body: formData,
-        });
-
-        const data = await response.json();
-        if (response.ok && data?.success) {
-            return data?.data?.image;
-        } else {
-            throw new Error(data?.message || "فشل رفع الصورة");
-        }
-    };
-
     const [imageLoading, setImageLoading] = useState(false);
-    const handleImageUpload = async (event, name, endPoint) => {
+    const handleImageUpload = async (event, type) => {
         const file = event.target.files[0];
         if (!file) return;
 
         setImageLoading(true);
         try {
             const webpFile = await convertToWebP(file);
-            const imageUrl = await sendImage(name, webpFile, endPoint);
-            if (name === "profile_image") setProfileImage(URL.createObjectURL(webpFile));
-            else if (name === "cover_image") setCoverImage(URL.createObjectURL(webpFile));
+            if (type === "profile_image") {
+                await uploadProfileImage(webpFile, token);
+                setProfileImage(URL.createObjectURL(webpFile));
+            } else if (type === "cover_image") {
+                await uploadCoverImage(webpFile, token);
+                setCoverImage(URL.createObjectURL(webpFile));
+            }
         } catch (error) {
             console.error("Error:", error);
         } finally {
@@ -155,11 +142,7 @@ export default function UserSettings() {
                                                 type="file"
                                                 accept="image/*"
                                                 onChange={(e) =>
-                                                    handleImageUpload(
-                                                        e,
-                                                        "cover_image",
-                                                        `https://mashi.coderaeg.com/api/cover-image`
-                                                    )
+                                                    handleImageUpload(e, "cover_image")
                                                 }
                                                 disabled={imageLoading}
                                             />
@@ -196,11 +179,7 @@ export default function UserSettings() {
                                                 type="file"
                                                 accept="image/*"
                                                 onChange={(e) =>
-                                                    handleImageUpload(
-                                                        e,
-                                                        "profile_image",
-                                                        `https://mashi.coderaeg.com/api/profile-image`
-                                                    )
+                                                    handleImageUpload(e, "profile_image")
                                                 }
                                                 disabled={imageLoading}
                                             />
