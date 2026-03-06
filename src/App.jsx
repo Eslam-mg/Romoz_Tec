@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import StoreContextProvider from "./Context/Context";
 import Layout from "./Layout/Layout";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
+import NotFound from "./Components/NotFound/NotFound";
 
 // Pages
 import Home from "./Pages/Home/Home";
@@ -64,6 +65,7 @@ const router = createBrowserRouter([
   { path: "/forgotPassword", element: <ForgotPassword /> },
   { path: "/resetPassword", element: <ResetPassword /> },
 
+  { path: "*", element: <NotFound /> },
 ]);
 
 const App = () => {
