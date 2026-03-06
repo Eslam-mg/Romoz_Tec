@@ -1,4 +1,30 @@
 /**
+ * Format large price numbers into readable Arabic format
+ * Examples:
+*/
+export function formatPrice(price) {
+    const num = Number(price);
+
+    if (!num) return "غير محدد";
+
+    const format = (value, label) => {
+        const formatted =
+            value % 1 === 0 ? value.toString() : value.toFixed(1).replace(".", ",");
+        return `${formatted} ${label}`;
+    };
+
+    if (num >= 1_000_000_000) {
+        return format(num / 1_000_000_000, "مليار");
+    }
+
+    if (num >= 1_000_000) {
+        return format(num / 1_000_000, "مليون");
+    }
+
+    return num.toString();
+}
+
+/**
 * Converting numbers to Arabic
 */
 function toArabicNumbers(number) {

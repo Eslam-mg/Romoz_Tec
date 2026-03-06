@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import "./adCardStyle.css";
 import { useNavigate } from 'react-router-dom';
-import { timeSince } from '../../utils/helpers';
+import { formatPrice, timeSince } from '../../utils/helpers';
 import { contextData } from '../../Context/Context';
 import { toggleFavorite } from '../../services/favoritesService';
 import { STORAGE_URL } from '../../services/api';
@@ -56,7 +56,7 @@ export default function AdCard({ category, adID, img, title, sellerName, userID,
                                 <img src={userImg} alt={sellerName} loading="lazy" />
                             </div>
                         ) : (
-                            <UserIcon width={20} height={20} className="user_icon"/>
+                            <UserIcon width={20} height={20} className="user_icon" />
                         )}
                     </div>
                     <span>{sellerName?.split(" ").slice(0, 2).join(" ")}</span>
@@ -83,7 +83,7 @@ export default function AdCard({ category, adID, img, title, sellerName, userID,
 
             <div className="card_footer">
                 <div className="card_footer_price">
-                    <span>{price !== "0.00" ? price : "غير محدد"} ر.س</span>
+                    <span>{formatPrice(price)} ر.س</span>
                 </div>
                 <button
                     type="button"
