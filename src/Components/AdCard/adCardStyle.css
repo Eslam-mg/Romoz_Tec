@@ -43,6 +43,12 @@
     width: fit-content;
 }
 
+.ad_card .card_user .card_user_name {
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+
 .ad_card .card_user .img_container .user_img {
     display: flex;
     align-items: center;
@@ -159,10 +165,19 @@
     .ad_card .card_image {
         height: 120px;
     }
+    
+    .ad_card .card_user {
+        gap: 3px;
+        margin: 5px;
+    }
 
-    .ad_card .card_user .img_container {
+    .ad_card .card_user .img_container, .ad_card .card_user .img_container .user_img {
         width: 24px;
         height: 24px;
+    }
+
+    .ad_card .card_user .card_user_name {
+        font-size: 12px;
     }
 
     .card_body {
@@ -173,7 +188,6 @@
         font-size: var(--font-size-sm);
     }
 
-    .card_user span,
     .mapPin_timer span {
         font-size: 10px;
         font-weight: bold;
@@ -183,11 +197,6 @@
 @media (max-width: 540px) {
     .ad_card .card_image {
         height: 120px;
-    }
-
-    .ad_card .card_user {
-        gap: 5px;
-        margin: 5px;
     }
 
     .card_body .mapPin_timer .mapPin_icon,

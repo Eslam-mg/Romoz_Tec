@@ -59,7 +59,7 @@ export default function AdCard({ category, adID, img, title, sellerName, userID,
                             <UserIcon width={20} height={20} className="user_icon" />
                         )}
                     </div>
-                    <span>{sellerName?.split(" ").slice(0, 2).join(" ")}</span>
+                    <span className="card_user_name">{sellerName?.split(" ").slice(0, 2).join(" ")}</span>
                 </div>
             )}
 
