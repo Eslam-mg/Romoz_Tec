@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import StoreContextProvider from "./Context/Context";
 import Layout from "./Layout/Layout";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 
 // Pages
 import Home from "./Pages/Home/Home";
@@ -28,7 +29,9 @@ const ForgotPassword = lazy(() => import("./Pages/Auth/ForgotPassword/ForgotPass
 
 const router = createBrowserRouter([
   {
-    path: "", element: <Layout />, children: [
+    path: "/",
+    element: <Layout />,
+    children: [
       { index: true, element: <Home /> },
       { path: "/contactUs", element: <ContactUs /> },
       { path: "/aboutUs", element: <AboutUS /> },
@@ -40,13 +43,21 @@ const router = createBrowserRouter([
   },
   { path: "/advertisements", element: <Advertisements /> },
 
-  { path: "/userProfile", element: <UserProfile />, children: [
-    { index: true, element: <AccountUser /> },
-    { path: "userOffers", element: <UserOffers /> },
-    { path: "userNotifactions", element: <UserNotifactions /> },
-    { path: "userFavorites", element: <UserFavorites /> },
-    { path: "userSettings", element: <UserSettings /> },
-  ] },
+  {
+    path: "/userProfile",
+    element: (
+      <ProtectedRoute>
+        <UserProfile />
+      </ProtectedRoute>
+    ),
+    children: [
+      { index: true, element: <AccountUser /> },
+      { path: "userOffers", element: <UserOffers /> },
+      { path: "userNotifactions", element: <UserNotifactions /> },
+      { path: "userFavorites", element: <UserFavorites /> },
+      { path: "userSettings", element: <UserSettings /> },
+    ]
+  },
 
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
