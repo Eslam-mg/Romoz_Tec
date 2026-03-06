@@ -96,14 +96,14 @@
 .card_body .mapPin_timer .timer {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
 }
 
 .card_body .mapPin_timer .mapPin .mapPin_icon,
 .card_body .mapPin_timer .timer .timer_icon {
     display: flex;
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
 }
 
 .card_footer {
@@ -117,14 +117,21 @@
 }
 
 .card_footer .card_footer_price {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-sm);
     font-weight: bold;
+}
+.card_footer .card_footer_price .price_currency {
+    font-size: 10px;
 }
 
 .card_footer .hart_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: transparent;
-    padding: 0;
     color: inherit;
+    height: 100%;
+    padding: 0;
 }
 
 .card_footer .hart_icon:hover {
@@ -168,11 +175,8 @@
 
     .card_user span,
     .mapPin_timer span {
-        font-size: 12px;
-    }
-
-    .card_footer .card_footer_price {
-        font-size: var(--font-size-sm);
+        font-size: 10px;
+        font-weight: bold;
     }
 }
 
@@ -188,11 +192,7 @@
 
     .card_body .mapPin_timer .mapPin_icon,
     .card_body .mapPin_timer .timer_icon {
-        width: 13px;
-        height: 13px;
-    }
-
-    .card_footer {
-        font-size: 12px;
+        width: 10px;
+        height: 10px;
     }
 }
