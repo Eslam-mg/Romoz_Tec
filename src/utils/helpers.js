@@ -7,6 +7,7 @@ export function formatPrice(price) {
 
     if (!num) return "غير محدد";
 
+    // Helper function to format numbers Adds decimal only when needed
     const format = (value, label) => {
         const formatted =
             value % 1 === 0 ? value.toString() : value.toFixed(1).replace(".", ",");
