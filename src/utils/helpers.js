@@ -34,6 +34,17 @@ function toArabicNumbers(number) {
 }
 
 /**
+* Format date to Arabic numbers (YYYY/MM/DD)
+*/
+function formatDate(date) {
+    const day = toArabicNumbers(date.getDate());
+    const month = toArabicNumbers(date.getMonth() + 1);
+    const year = toArabicNumbers(date.getFullYear());
+
+    return `${year}/${month}/${day}`;
+}
+
+/**
 * Calculating time elapsed since a specific date
 */
 export function timeSince(dateString) {
@@ -48,7 +59,8 @@ export function timeSince(dateString) {
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
 
-    if (days > 3) return dateOnly;
+    // if (days > 3) return dateOnly;
+    if (days > 3) return formatDate(past);
     if (days > 0) return `${toArabicNumbers(days)} يوم`;
     if (hours > 0) return `${toArabicNumbers(hours)} ساعة`;
     if (minutes > 0) return `${toArabicNumbers(minutes)} دقيقة`;
